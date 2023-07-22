@@ -13,7 +13,7 @@ export default function TodoPage() {
     return (
         <div>
             <h1 id="h1TodoPage">todo Page for todo {index}</h1>
-            <p>{todo}</p>
+            <p>{todo.label}</p>
 
             <Link to="/">
                 <p>Go home</p>

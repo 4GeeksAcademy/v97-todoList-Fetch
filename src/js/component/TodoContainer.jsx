@@ -4,7 +4,7 @@ import { Context } from "../Context.jsx";
 
 export default function TodoContainer() {
   const [userInput, setUserInput] = useState("");
-  const { todoList, setTodoList } = useContext(Context);
+  const { todoList, setTodoList, updateTodos } = useContext(Context);
 
   const onChangeHandler = (event) => {
     const { value } = event.target;
@@ -12,10 +12,11 @@ export default function TodoContainer() {
     setUserInput(event.target.value);
   };
 
-  const removeTodo = (key) => {
+  const removeTodo = (index) => {
    
-    setTodoList(todoList.filter((list, index) => index !== key));
-   
+    // const newTodos = setTodoList(todoList.filter((list, key) => index !== key));
+    const newTodos = todoList.filter((list, key) => index !== key);
+    updateTodos(newTodos);
 
     return console.log(todoList);
   };
@@ -25,16 +26,16 @@ export default function TodoContainer() {
   const addTodoHandler = (event) => {
     event.preventDefault();
     if (event.key === "Enter") {
-      setTodoList([...todoList, userInput]);
+      updateTodos(todoList.concat([{ label: userInput, done: false }]));
       setUserInput("");
     }
   };
 
-  function todoListArr(todo, index) {
-    return (
-      <Todo key={index} index={index} todo={todo} removeTodo={removeTodo} />
-    );
-  }
+  // function todoListArr(todo, index) {
+  //   return (
+  //     <Todo key={index} index={index} todo={todo} removeTodo={removeTodo} />
+  //   );
+  // }
 
   
   return (
@@ -49,7 +50,8 @@ export default function TodoContainer() {
         />
       </form>
 
-      {todoList.map(todoListArr)}
+      {/* {todoList.map(todoListArr)} */}
+      {todoList.map((todo, index) => <Todo key={index} index={index} todo={todo} removeTodo={removeTodo} />)}
 
       <p id="itemsLeft">{todoList.length} items left</p>
     

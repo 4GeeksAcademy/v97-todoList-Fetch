@@ -15,7 +15,7 @@ export default function Todo(props) {
     >
       <Link to={`/todo/${index}`}>
         <div >
-          <p  style={{ marginBottom: "0px" }}>{todo}</p>
+          <p  style={{ marginBottom: "0px" }}>{todo.label}</p>
         </div>
       </Link>
 
