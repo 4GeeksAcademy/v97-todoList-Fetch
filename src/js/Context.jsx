@@ -2,7 +2,7 @@ import React, { createContext, useState, useEffect} from 'react';
 
 export const Context = createContext();
 
-const API_URL= 'https://assets.breatheco.de/apis/fake/todos/user/viviannet97';
+const API_URL= 'https://fake-todo-list-52f9a4ed80ce.herokuapp.com/todos/user/viviannet97';
 
 export default function ContextProvider(props) {
 
